@@ -1,0 +1,145 @@
+/* =========================================================
+   Lesson 2 Quiz data (How AI Works)
+   MCQ: [question, [A,B,C,D], correctIndex, why]
+   ESSAY: [question, modelAnswerHTML, [[label, [regex...], minNeeded], ...]]
+   ========================================================= */
+const MCQ2 = [
+  ["Which option represents the broad field that includes computer systems capable of tasks such as learning, prediction, and speech/image recognition?",
+    ["Deep Learning", "Artificial Intelligence", "Machine Learning", "Generative AI"], 1,
+    "AI is the broad field. Machine Learning, Deep Learning and Generative AI are all inside it."],
+  ["From the hierarchy of AI technologies, what is Machine Learning?",
+    ["A branch of AI in which models learn patterns from data.", "A method that relies exclusively on disconnected neural networks.", "A system that generates images and videos without training data.", "A fixed set of rules programmed manually."], 0,
+    "Machine Learning learns patterns from data to make predictions and judgments."],
+  ["What term describes a Machine Learning approach that uses multilayer neural networks to learn complex representations and patterns?",
+    ["Machine Learning", "Generative AI", "Deep Learning", "Spam filter"], 2,
+    "Deep Learning = machine learning with multilayer neural networks."],
+  ["What is the primary function of Generative AI systems?",
+    ["Programming explicit rules for older computers.", "Creating new content such as text, images, audio, and programs.", "Classifying spam email only, without generating content.", "Operating integrated circuits according to Moore's Law."], 1,
+    "Generative AI generates new data: text, images, audio, programs."],
+  ["Which technologies do most modern Generative AI systems rely on to create new content?",
+    ["Explicitly programmed rules", "Deep Learning models and neural networks", "Edge computing and Moore's Law", "Fixed classical bits"], 1,
+    "Generative AI uses deep learning, which is built on neural networks."],
+  ["What does \"hallucination\" mean when Generative AI produces text?",
+    ["Producing text that sounds plausible and logical but is factually incorrect.", "Stopping completely because the Internet connection is lost.", "Generating images that are always 100% accurate and identical to reality.", "Classifying spam emails with extremely high accuracy."], 0,
+    "Hallucination = content that differs from the facts, even if it sounds convincing."],
+  ["Which option is NOT an appropriate example of Generative AI?",
+    ["ChatGPT for text generation", "AI image-generation tools", "Spam filter", "AI audio-generation tools"], 2,
+    "A spam filter classifies email (machine learning). It does not generate new content."],
+  ["What are the basic components of an artificial neural network used to learn complex patterns from data?",
+    ["Connected layers containing neuron-like units whose weights change during training.", "Vacuum tubes and simple electrical circuits.", "Fixed program rules written only as linear algorithms.", "Manual switches that regulate current flow in the processor."], 0,
+    "A neural network = connected layers of neuron-like units whose weights are adjusted during training."],
+  ["Which is a branch of AI in which models learn patterns from data to make predictions or classifications without explicitly programming every rule?",
+    ["Deep Learning", "Generative AI", "Machine Learning", "Cloud computing"], 2,
+    "That is the definition of Machine Learning."],
+  ["A Machine Learning approach that uses multilayer neural networks to learn complex representations and patterns, such as image analysis and speech recognition, is:",
+    ["Deep Learning", "Artificial Intelligence", "Generative AI", "Traditional programming"], 0,
+    "Deep Learning is used for image analysis and speech recognition."],
+  ["A computer system inspired in a simplified way by interconnected neurons, whose weights change during training, is:",
+    ["Quantum qubit", "Artificial neural network", "Classical bit", "Moore's Law"], 1,
+    "An artificial neural network is modeled after the neurons of the brain."],
+  ["When Generative AI produces text that appears reasonable but is factually incorrect, the phenomenon is called:",
+    ["Hallucination", "Quantum superposition", "Edge computing", "Linear execution"], 0,
+    "This is called hallucination."],
+  ["Which option is a direct example of Machine Learning?",
+    ["Spam filters and product recommendations", "Generating complex artistic images and videos", "Processing data on edge devices in vehicles", "Operating integrated circuits according to Moore's Law"], 0,
+    "Spam filters and product recommendations learn patterns from data. Generating images is Generative AI."],
+  ["Which accurately describes Generative AI (GenAI)?",
+    ["A system limited to spam classification and virus removal.", "AI that uses Deep Learning to generate new data such as text and images.", "A computing technology based on quantum mechanics and parallel processing.", "A simple neural network with only one input layer and one output layer."], 1,
+    "GenAI uses deep learning to generate new data."],
+  ["What are the layers between the input layer and output layer in an artificial neural network called?",
+    ["Hidden layers", "Edge layers", "Cloud layers", "Linear layers"], 0,
+    "The layers in the middle are called hidden layers."],
+  ["What should learners do to avoid the risks of hallucination when using Generative AI in school reports?",
+    ["Rely completely on outputs without human review.", "Verify outputs and sources and compare them with trustworthy facts.", "Permanently avoid all phones and computers.", "Copy AI text word-for-word and submit it directly."], 1,
+    "Always verify AI output against trustworthy sources."],
+  ["Most current AI systems are designed to perform:",
+    ["A specific task or a limited set of tasks (narrow scope).", "Full simulation of human consciousness in all fields without limitations.", "Manual programming of old household electrical devices.", "Management of global military communication networks only."], 0,
+    "Most current AI is Narrow AI: built for a specific task or a limited set of tasks."],
+  ["Which technology is most suitable for complex image analysis and advanced speech recognition?",
+    ["Deep Learning based on multilayer neural networks.", "Fixed, manually written linear rules.", "Traditional cloud computing without AI.", "E-commerce and cashless payment."], 0,
+    "Deep Learning learns complex patterns from large-scale data."],
+  ["What is the main benefit of the speed that Generative AI offers students when preparing reports?",
+    ["It can help complete tasks quickly, while users must remain aware of possible inaccuracies.", "It automatically guarantees 100% correct information.", "It eliminates the need for books and official school sources.", "It completely prevents hallucinations."], 0,
+    "GenAI is fast, but its output can be wrong, so you must check it."],
+  ["What is the correct procedure when using Generative AI tools in homework and projects?",
+    ["Always verify information and review original sources and references.", "Treat everything produced on screen as unquestionable scientific fact.", "Stop writing school research and depend entirely on AI.", "Submit AI outputs without reading or checking them."], 0,
+    "Verify information and review the original sources and references."],
+];
+
+const ESSAY2 = [
+  ["Define Artificial Intelligence (AI), and explain in three points the differences among Machine Learning, Deep Learning, and Generative AI.",
+    "<b>AI</b> is a general term for technologies that reproduce or perform intelligent human behavior (learning, reasoning, judgment) on a computer.<br>1. <b>Machine Learning</b>: learns patterns from data to make predictions and judgments (e.g., spam filters, product recommendations).<br>2. <b>Deep Learning</b>: an advanced type of machine learning that uses multilayer neural networks to learn complex patterns from large-scale data (e.g., image analysis, speech recognition).<br>3. <b>Generative AI</b>: uses deep learning to generate new data such as text, images, audio and programs.",
+    [["Definition of AI: technology that reproduces intelligent human behavior", ["intelligen|human|think|reason|learn|judg"], 1], ["Machine Learning learns patterns from data", ["machine learning", "pattern|data|learn"], 2], ["Deep Learning uses multilayer neural networks", ["deep learning", "neural|layer|complex"], 2], ["Generative AI creates new content", ["generat", "new|text|image|audio|content"], 2]]],
+
+  ["Explain how models learn in Machine Learning compared with traditional methods based on explicitly programmed rules.",
+    "In <b>traditional programming</b>, a programmer writes explicit rules for every case and the computer only follows them. In <b>Machine Learning</b>, the model <b>learns patterns from data</b> (examples) and adjusts itself, so it can make predictions or classifications on new cases <b>without every rule being written by hand</b>.",
+    [["Traditional: programmer writes explicit / fixed rules", ["rule|explicit|fixed|manual|programm"], 1], ["Machine Learning learns patterns from data / examples", ["pattern|data|example|train|learn"], 1], ["ML makes predictions on new cases", ["predict|classif|new (case|data|input|example)|decision|judg"], 1], ["Without writing every rule by hand", ["without|no need|instead|not (every|all)|automatic|itself|rather"], 1]]],
+
+  ["What are the basic components of an artificial neural network?",
+    "An artificial neural network is made of <b>layers of connected neuron-like units (nodes)</b>: an <b>input layer</b>, one or more <b>hidden layers</b>, and an <b>output layer</b>. The connections have <b>weights</b> that change during training, which is how the network learns.",
+    [["Input layer", ["input"], 1], ["Hidden layers", ["hidden|middle|between"], 1], ["Output layer", ["output"], 1], ["Neurons / nodes connected, with weights adjusted in training", ["neuron|node|unit|weight|connect"], 1]]],
+
+  ["Explain the concept of Generative AI (GenAI), giving examples.",
+    "<b>Generative AI</b> is AI technology that uses deep learning to <b>generate new data</b> such as text, images, audio and programs. Examples: <b>ChatGPT</b> (text), <b>AI image-generation tools</b>, and <b>AI audio-generation tools</b>.",
+    [["Generates new content / data", ["generat|creat|produc|new"], 1], ["Types: text, images, audio, programs", ["text|image|audio|video|program|code|music"], 1], ["Uses deep learning", ["deep learning|neural"], 1], ["Gives examples (ChatGPT, image tools...)", ["chatgpt|gpt|chatbot|midjourney|dall|image[- ]generat|image tool|gemini|copilot|claude"], 1]]],
+
+  ["Explain the relationship among Artificial Intelligence, Machine Learning, Deep Learning, and Generative AI.",
+    "They are <b>nested</b>: <b>Generative AI</b> is inside <b>Deep Learning</b>, which is inside <b>Machine Learning</b>, which is inside <b>Artificial Intelligence</b>. AI is the broadest field, and each inner layer is a more specific technology.",
+    [["Mentions all four: AI, ML, DL, GenAI", ["\\bai\\b|artificial intelligence", "machine learning|\\bml\\b", "deep learning|\\bdl\\b", "generative|genai|gen ai"], 4], ["Explains they are nested / one inside another", ["inside|within|nested|subset|part of|branch|contain|include|under|layer|circle"], 1], ["AI is the broadest / outermost", ["broad|outer|largest|general|big|umbrella|biggest"], 1]]],
+
+  ["Explain what is meant by \"hallucination\" in the context of Generative AI.",
+    "<b>Hallucination</b> is when Generative AI produces content that <b>differs from the facts</b>. The text sounds plausible and logical, but it is <b>factually incorrect</b>.",
+    [["Generative AI produces incorrect / false content", ["incorrect|false|wrong|not true|differ|inaccura|fake|mistake|made[- ]up|invent"], 1], ["Content looks plausible / convincing", ["plausible|logical|reasonable|sounds|convinc|believ|looks|seem|appear"], 1], ["Differs from the facts", ["fact|real|truth|true|reality"], 1]]],
+
+  ["Suppose a farmer wants to use AI to distinguish healthy crops from diseased crops in photographs. Explain the type of training data the system needs and identify one factor that could make its prediction wrong.",
+    "The system needs <b>many photographs of crops, each labeled</b> as healthy or diseased, covering different crops, lighting, angles and disease stages. A prediction could be wrong if the <b>training data is biased or too small</b> (for example, only one crop or one kind of lighting), if the photo quality is poor, or if the disease was never in the training data.",
+    [["Training data = photographs / images of crops", ["photo|image|picture"], 1], ["Labeled as healthy or diseased", ["label|healthy|diseased|tag|class|categor"], 1], ["Varied / large amount of data", ["many|large|varied|different|diverse|variety|lots|enough|various"], 1], ["A factor that makes it wrong (biased/small data, poor quality, new disease)", ["bias|small|few|not enough|poor|blur|quality|light|never seen|unseen|new disease|insufficient|limited|wrong|incomplete"], 1]]],
+
+  ["Discuss one benefit and one risk of using Generative AI to write a school report, and state what learners should do to verify its output.",
+    "<b>Benefit</b>: it helps complete tasks <b>quickly</b> and gives ideas and a draft. <b>Risk</b>: it may <b>hallucinate</b>, producing information that sounds correct but is wrong (or copy ideas without credit). <b>Verification</b>: check the output and its sources against <b>trustworthy facts</b>, review the original sources and references, and review it yourself instead of copying it directly.",
+    [["A benefit (fast / saves time / ideas)", ["fast|quick|speed|save|time|idea|draft|help|easy|efficien"], 1], ["A risk (hallucination / wrong information)", ["hallucin|incorrect|wrong|false|inaccura|mistake|plagiar|copy|error"], 1], ["Verify with trustworthy sources / facts", ["verif|check|compare|trustworth|reliable|source|reference|fact|review|confirm"], 1]]],
+
+  ["Define Artificial Intelligence and explain how today's intelligent systems differ from traditional computers programmed with fixed rules.",
+    "<b>AI</b> is a general term for technologies that reproduce intelligent human behavior (learning, reasoning, judgment) on a computer. <b>Traditional computers</b> only follow fixed rules written by a programmer, while today's intelligent systems <b>learn patterns from data</b> and can make predictions and judgments, including on complex data such as images, speech and text.",
+    [["Defines AI (intelligent human behavior on a computer)", ["intelligen|human|learn|reason|judg|think"], 1], ["Traditional: follows fixed rules written by a programmer", ["fixed|rule|explicit|manual|programm"], 1], ["Intelligent systems learn patterns from data", ["pattern|data|learn|train|example"], 1], ["Can predict / handle complex data (images, speech)", ["predict|judg|decision|image|speech|complex|classif|recogni"], 1]]],
+
+  ["Explain in detail the nested relationship among Artificial Intelligence, Machine Learning, and Deep Learning, supporting your answer with the basic concepts of each.",
+    "<b>AI</b> is the broadest field: technologies that reproduce intelligent human behavior. Inside it is <b>Machine Learning</b>, where models learn patterns from data to make predictions (e.g., spam filters). Inside machine learning is <b>Deep Learning</b>, which uses multilayer <b>neural networks</b> to learn complex patterns from large-scale data (e.g., image analysis, speech synthesis). So every deep learning system is machine learning, and every machine learning system is AI, but not the other way round.",
+    [["Mentions AI, ML and DL", ["\\bai\\b|artificial intelligence", "machine learning|\\bml\\b", "deep learning|\\bdl\\b"], 3], ["Nested: DL inside ML inside AI", ["inside|within|nested|subset|part of|branch|contain|include|under"], 1], ["ML concept: learns patterns from data", ["pattern|data|learn|predict"], 1], ["DL concept: multilayer neural networks / complex patterns", ["neural|layer|complex|large"], 1]]],
+
+  ["What is Generative AI, and how does it depend on Deep Learning models to create new content such as text and images?",
+    "<b>Generative AI</b> is AI that generates new data (text, images, audio, programs). It depends on <b>Deep Learning models (neural networks)</b> that are trained on large amounts of data to learn patterns; after training, the model uses those patterns to create new text or images when given a prompt.",
+    [["Generative AI creates new data (text, images...)", ["generat|creat|new|produc"], 1], ["Relies on deep learning / neural networks", ["deep learning|neural|\\bdl\\b"], 1], ["Trained on large data to learn patterns", ["train|large|data|pattern|learn"], 1], ["Uses learned patterns to produce output from a prompt", ["prompt|input|request|question|produce|output|generate"], 1]]],
+
+  ["Discuss hallucination in Generative AI, explaining why it is dangerous and the appropriate procedure for verifying outputs.",
+    "<b>Hallucination</b> is when Generative AI generates content that differs from the facts, though it sounds plausible. It is <b>dangerous</b> because people may believe and use the false information (in homework, research or decisions) without noticing the mistake. To verify outputs: <b>check the information and its sources</b> against trustworthy facts, review the original sources and references, and never submit AI output without human review.",
+    [["Defines hallucination (plausible but factually wrong)", ["incorrect|false|wrong|differ|inaccura|plausible|fact|not true"], 1], ["Why dangerous: people believe / use false information", ["danger|believ|trust|mislead|decision|spread|harm|risk|mistake|rely|wrong"], 1], ["Verify with trustworthy sources / facts", ["verif|check|compare|trustworth|reliable|source|reference|confirm"], 1], ["Human review / original references", ["review|original|reference|human|read|manual|yourself"], 1]]],
+
+  ["Explain how everyday examples such as spam filtering, product recommendations, and translation help us understand AI applications.",
+    "They show that AI is already part of daily life. A <b>spam filter</b> sorts email by learning patterns from data, a store <b>recommends products</b> you may buy based on data, and a <b>translation app</b> converts one language into another. They help us see that AI learns from data to make predictions and judgments, but they are <b>not all the same kind</b> of AI.",
+    [["AI is part of daily life", ["daily|everyday|around us|real life|common|life"], 1], ["Spam filter / recommendations / translation described", ["spam|filter", "recommend|suggest", "translat|language"], 2], ["They learn patterns from data to predict / judge", ["pattern|data|learn|predict|judg|classif|train"], 1], ["Not all are the same kind of AI", ["not (all )?the same|different (kind|type)|various|kinds|types|differ"], 1]]],
+
+  ["Clearly compare Machine Learning and Deep Learning in terms of dependence on neural networks and the amount of training data required.",
+    "<b>Machine Learning</b> learns patterns from data and does not always need neural networks (it can use simpler methods), so it can work with a smaller amount of data. <b>Deep Learning</b> is a part of machine learning that always uses <b>multilayer neural networks</b> and usually needs <b>large-scale data</b> to learn complex patterns such as images and speech.",
+    [["ML does not always depend on neural networks", ["not (always |necessarily )?(need|depend|use|require)|simpler|other methods|without neural|doesn.?t|may or may not|not only"], 1], ["DL uses multilayer neural networks", ["deep learning|\\bdl\\b", "neural|layer"], 2], ["DL needs large-scale data", ["large|big|huge|more data|lots of|massive|a lot of"], 1], ["ML can work with less data / simpler patterns", ["less|small|few|simple|limited|fewer"], 1]]],
+
+  ["Explain how Generative AI can create new and varied content such as text, images, and audio based on training data.",
+    "Generative AI uses <b>deep learning models trained on large amounts of text, images or audio</b>. The model learns the patterns in this training data, and when given a prompt it uses those patterns to <b>generate new content</b> (text, images, audio) that is different each time, instead of copying one stored example.",
+    [["Trained on large data (text / images / audio)", ["train|data|large|learn"], 1], ["Learns patterns using deep learning / neural networks", ["pattern|deep learning|neural|learn"], 1], ["Generates new content from a prompt", ["prompt|generat|creat|new|produc"], 1], ["Varied output: text, images, audio", ["text|image|audio|vari|different|diverse"], 1]]],
+
+  ["Propose an appropriate rule for using Generative AI in school homework, and give two convincing reasons why source accuracy must be verified.",
+    "<b>Rule</b>: Use Generative AI only as a helper for ideas and drafts, always verify its information with trustworthy sources, and write and submit the final work in your own words. <b>Reasons</b>: (1) AI can <b>hallucinate</b> and give information that sounds correct but is false; (2) wrong information in homework or research lowers its quality and trust, and AI may not give real sources or may reuse copyrighted material.",
+    [["A clear rule (use as helper, verify, own words)", ["rule|only|helper|help|must|should|always|never|verify|own words|review|cite|not copy"], 1], ["Reason 1: hallucination / false information", ["hallucin|false|wrong|incorrect|inaccura|mistake|not true"], 1], ["Reason 2 (e.g. quality / trust / grades / sources / copyright / learning)", ["quality|trust|grade|mark|learn|source|copyright|plagiar|credib|reliab|misinform|respons|honest|cheat"], 1]]],
+
+  ["Why are most current AI systems considered Narrow AI?",
+    "Because they are designed to perform <b>a specific task or a limited set of tasks</b> (such as spam filtering, translation or image recognition). They do not have general human-like intelligence or consciousness across all fields.",
+    [["Designed for a specific task / limited set of tasks", ["specific|limited|narrow|single|particular|one task|certain"], 1], ["Examples of tasks (spam, translation, image recognition...)", ["spam|translat|image|speech|recommend|face|chess|recogni|task"], 1], ["Cannot do everything like a human / no general intelligence", ["not (able|general|human|all)|cannot|can.?t|only|general|human|consciousness|everything|all fields|any task"], 1]]],
+
+  ["Define an artificial neural network.",
+    "An <b>artificial neural network</b> is a system modeled in a simplified way after the nerve cells (neurons) of the human brain. Many <b>connected components (neuron-like units) arranged in layers</b> learn from data by changing their <b>weights</b> during training, which lets it make complex judgments.",
+    [["Inspired by neurons of the human brain", ["brain|neuron|nerve|human|biolog"], 1], ["Many connected units / layers", ["connect|layer|node|unit|network|link"], 1], ["Learns from data / weights change in training", ["learn|data|train|weight|adjust"], 1]]],
+
+  ["Draw a simple diagram showing the relationship among Artificial Intelligence, Machine Learning, Deep Learning, and Generative AI.",
+    "Draw four <b>nested circles (or boxes)</b>, one inside the other:<div class=\"mini-nest\"><div class=\"n1\"><b>AI</b><div class=\"n2\"><b>Machine Learning</b><div class=\"n3\"><b>Deep Learning</b><div class=\"n4\"><b>Generative AI</b></div></div></div></div></div>The biggest circle is <b>AI</b>, then <b>Machine Learning</b> inside it, then <b>Deep Learning</b>, and the smallest, innermost one is <b>Generative AI</b>.",
+    [["Names all four: AI, ML, DL, GenAI", ["\\bai\\b|artificial intelligence", "machine learning|\\bml\\b", "deep learning|\\bdl\\b", "generative|genai|gen ai"], 4], ["Describes nesting (circles/boxes inside each other)", ["inside|within|nested|circle|box|oval|inner|contain|subset|layer"], 1], ["AI is outermost / GenAI is innermost", ["outer|biggest|largest|broad|innermost|smallest|inner"], 1]]],
+];

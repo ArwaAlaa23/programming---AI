@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Programming and AI (بكالوريا)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- three.js background -->
+  <canvas id="bg"></canvas>
+
+  <!-- NAVBAR 1: static (chapters) -->
+  <header class="nav-main" id="navMain">
+    <a href="#/" class="brand" aria-label="Home">
+      <span class="brand-dot"></span>
+      <span>Programming &amp; AI <span class="ar">(بكالوريا)</span></span>
+    </a>
+    <nav class="chapters" aria-label="Chapters">
+      <a href="#/c/1" data-chapter="1">Chapter 1</a>
+      <a href="#/c/2" data-chapter="2">Chapter 2</a>
+      <a href="#/c/3" data-chapter="3">Chapter 3</a>
+      <a href="#/c/4" data-chapter="4">Chapter 4</a>
+    </nav>
+  </header>
+
+  <!-- NAVBAR 2: dynamic (lessons) - appears only after a chapter is clicked -->
+  <div class="nav-sub" id="navSub" aria-hidden="true">
+    <div class="nav-sub-inner">
+      <span class="sub-title" id="subTitle">Chapter 1</span>
+      <nav class="lessons" id="lessons" aria-label="Lessons"></nav>
+    </div>
+  </div>
+
+  <main id="view" tabindex="-1"></main>
+
+  <footer class="footer">
+    <p>Programming &amp; AI (بكالوريا) · Badr Tigers’ Modern School · ENG/Arwa Alaa</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="quiz2.js"></script>
+  <script src="quiz3.js"></script>
+  <script src="quiz4.js"></script>
+  <script src="quiz.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
