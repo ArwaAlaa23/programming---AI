@@ -15,7 +15,15 @@ const CHAPTERS = {
       { title: "Ethical Issues with AI", summary: "Algorithmic bias, privacy, explainability and the four principles of AI ethics.", icon: "⚖️" },
     ],
   },
-  2: { title: "Chapter 2", subtitle: "Coming soon", lessons: [{ title: "Lesson 1" }, { title: "Lesson 2" }, { title: "Lesson 3" }] },
+  2: {
+    title: "Chapter 2",
+    subtitle: "Cryptographic Technologies and Authentication",
+    lessons: [
+      { title: "Cryptography & Authentication", summary: "How HTTPS and the TLS handshake work, digital signatures, and multi-factor authentication.", icon: "🔐" },
+      { title: "Network Security Design", summary: "Firewall, VPN, DMZ, defense in depth and Zero Trust.", icon: "🛡️" },
+      { title: "Incident Response & Risk Management", summary: "The six stages of incident response and how risk size is calculated.", icon: "🚨" },
+    ],
+  },
   3: { title: "Chapter 3", subtitle: "Coming soon", lessons: [{ title: "Lesson 1" }, { title: "Lesson 2" }, { title: "Lesson 3" }] },
   4: { title: "Chapter 4", subtitle: "Coming soon", lessons: [{ title: "Lesson 1" }, { title: "Lesson 2" }, { title: "Lesson 3" }, { title: "Lesson 4" }] },
 };
@@ -259,6 +267,230 @@ const CH1 = {
     <div class="callout" style="margin-top:30px;text-align:center"><b>Start small. Measure impact. Scale intelligently.</b></div>`,
 };
 
+/* ---------- Lesson content (Chapter 2, from the PDF) ---------- */
+const CH2_PDF = "chapter2.pdf";
+
+const CH2 = {
+  1: () => `
+    <div class="page-head">
+      <div class="crumb">Chapter 2 · Lesson 1</div>
+      <h1>Cryptographic Technologies and Authentication</h1>
+      <p>Explain how HTTPS secures communication (TLS handshake, public-key then common-key cryptography), and describe how authentication, including multi-factor authentication, is used in real services.</p>
+    </div>
+
+    <h2 class="section-title"><small>HTTPS</small>HTTPS Communication</h2>
+    <div class="card">
+      <p><b style="color:var(--text)">HTTPS = HTTP + TLS encryption</b></p>
+      <div class="grid cols-2" style="margin-top:14px">
+        <div><h3>Provides 3 things at once</h3><div class="pill-row"><span class="pill">Encryption</span><span class="pill">Tamper detection</span><span class="pill">Partner verification</span></div></div>
+        <div><h3>Protects against</h3><div class="pill-row"><span class="pill">Eavesdropping</span><span class="pill">Tampering</span><span class="pill">Impersonation</span></div></div>
+      </div>
+      <p style="margin-top:14px">The setup process is called the <b style="color:var(--text)">TLS handshake</b>.</p>
+    </div>
+
+    <h2 class="section-title"><small>Handshake</small>The 3 Stages of HTTPS</h2>
+    <div class="grid cols-3">
+      <div class="card"><span class="num">1</span><h3>Connection</h3>
+        <p>Server sends its digital certificate + public key. The browser verifies it via the CA (Certificate Authority).</p>
+        <div class="pill-row"><span class="pill">Public-key</span></div></div>
+      <div class="card"><span class="num">2</span><h3>Key Exchange</h3>
+        <p>Browser creates a common key, encrypts it with the server’s public key and sends it. The server decrypts it with its private key.</p>
+        <div class="pill-row"><span class="pill">Public-key</span></div></div>
+      <div class="card"><span class="num">3</span><h3>Data</h3>
+        <p>The actual data is encrypted and exchanged using the shared common key.</p>
+        <div class="pill-row"><span class="pill">Common-key</span></div></div>
+    </div>
+    <div class="callout" style="margin-top:16px"><b>Note:</b> modern TLS versions use Diffie-Hellman key agreement instead of sending the common key directly.</div>
+
+    <h2 class="section-title"><small>Compare</small>Public-key vs Common-key Cryptography</h2>
+    <div class="compare">
+      <div class="card"><h3>Public-key cryptography</h3>
+        <p><b style="color:var(--good)">Advantage:</b> good for small data; shares keys safely.</p>
+        <p style="margin-top:8px"><b style="color:#ff9aa9">Disadvantage:</b> slow.</p></div>
+      <div class="card"><h3>Common-key cryptography</h3>
+        <p><b style="color:var(--good)">Advantage:</b> fast; good for large data; exchanges data quickly.</p>
+        <p style="margin-top:8px"><b style="color:#ff9aa9">Disadvantage:</b> less safety (the key must be shared).</p></div>
+    </div>
+
+    <h2 class="section-title"><small>Signature</small>Digital Signature Direction</h2>
+    <div class="card">
+      <p>A digital signature works in the <b style="color:var(--text)">reverse direction</b> of normal encryption.</p>
+      <div class="compare" style="margin-top:14px">
+        <div class="callout"><b>Normal encryption</b><br>Public key locks → private key unlocks.</div>
+        <div class="callout warn"><b>Digital signature</b><br>Private key signs → public key verifies.</div>
+      </div>
+    </div>
+
+    <h2 class="section-title"><small>MFA</small>Authentication in Real Services</h2>
+    <div class="card">
+      <p><b style="color:var(--text)">Multi-factor authentication (MFA)</b> = combining 2 or more of these 3 factors:</p>
+      <div class="grid cols-3" style="margin-top:14px">
+        <div class="card"><div class="big">🔑</div><h3>Knowledge</h3><p>Something you <b>know</b> — e.g., password.</p></div>
+        <div class="card"><div class="big">📱</div><h3>Possession</h3><p>Something you <b>have</b> — e.g., phone, smart card.</p></div>
+        <div class="card"><div class="big">🧬</div><h3>Biometric</h3><p>Something you <b>are</b> — e.g., fingerprint.</p></div>
+      </div>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px">
+      <div class="card"><h3>Why combine factors?</h3>
+        <ul><li>One factor alone broken → full access.</li><li>Multiple factors: breaking one still leaves another barrier.</li></ul></div>
+      <div class="card"><h3>Real-world MFA examples</h3>
+        <ul>
+          <li><b>Online banking:</b> password + one-time password (OTP)</li>
+          <li><b>SMS authentication:</b> password (knowledge) + SMS (possession)</li>
+          <li><b>Company laptop login:</b> smart card (possession) + fingerprint (biometric)</li>
+          <li><b>Online shopping:</b> password (knowledge) + one-time code from 3-D Secure (possession)</li>
+        </ul></div>
+    </div>
+
+    <h2 class="section-title"><small>Main idea</small>Combinations of Security Technologies</h2>
+    <div class="callout">Safe communication and services are achieved not by a single technology but by combining multiple security technologies. Strong login combines two or more different factors.</div>
+
+    <h3 style="margin:22px 0 10px">Key terms</h3>
+    <div class="grid cols-3">
+      <div class="card"><h3>Digital signature</h3><p>Detects tampering and impersonation, and provides non-repudiation.</p></div>
+      <div class="card"><h3>Multi-factor authentication</h3><p>Combining two or more of the three factors: knowledge, possession, biometric.</p></div>
+      <div class="card"><h3>Common-key cryptography</h3><p>Exchanges data quickly.</p></div>
+      <div class="card"><h3>Public-key cryptography</h3><p>Shares a key safely.</p></div>
+      <div class="card"><h3>Certificate authority</h3><p>Vouches that a site is genuine.</p></div>
+    </div>
+
+    <h3 style="margin:22px 0 10px">Technology and effect</h3>
+    <div class="card">
+      <ul>
+        <li><b>Encryption (common key, public-key):</b> prevents communication content from being read by third parties.</li>
+        <li><b>Digital signature:</b> detects data tampering or impersonation of the sender, and makes it impossible for the sender to deny having sent the data afterward (non-repudiation).</li>
+        <li><b>Digital certificate:</b> verifies that the communication partner is authentic.</li>
+        <li><b>Multi-factor authentication:</b> prevents unauthorized logins.</li>
+      </ul>
+    </div>`,
+
+  2: () => `
+    <div class="page-head">
+      <div class="crumb">Chapter 2 · Lesson 2</div>
+      <h1>2.2 Network Security Design</h1>
+      <p>Why modern networks use several layers of defense, and what firewalls, VPNs, DMZs and Zero Trust each do.</p>
+    </div>
+
+    <h2 class="section-title"><small>Example</small>Example of Network Security Design</h2>
+    <div class="card">
+      <p>An organization’s network holds confidential data — customer records, financial files and private messages. Attackers constantly look for a way in. A single lock on the front door is not enough: if it is picked, everything inside is exposed. For this reason, modern network security uses <b style="color:var(--text)">several layers</b>, so that even when one defense is breached, the next one still protects the system.</p>
+    </div>
+
+    <div class="grid cols-2" style="margin-top:16px">
+      <div class="card"><div class="big">🧱</div><h3>Firewall</h3>
+        <p>A system installed at the entry/exit point of a network that allows or denies communication based on rules set in advance.</p>
+        <div class="callout" style="margin-top:12px">e.g., Allow access to the web server, but deny direct external access to the database server.</div></div>
+      <div class="card"><div class="big">🔒</div><h3>VPN (Virtual Private Network)</h3>
+        <p>A technology that creates an encrypted virtual private line (tunnel) over the Internet, allowing safe connection to a network from a remote location.</p>
+        <p style="margin-top:8px">Because communication content is encrypted, the risk of eavesdropping is reduced even on public Wi-Fi.</p></div>
+    </div>
+
+    <h3 style="margin:22px 0 10px">Main uses of VPN</h3>
+    <div class="grid cols-2">
+      <div class="card"><span class="num">1</span><h3>Remote work</h3><p>Connecting safely to an organization’s network from home or while away.</p></div>
+      <div class="card"><span class="num">2</span><h3>Connecting branches</h3><p>Connecting offices in different locations safely.</p></div>
+    </div>
+
+    <h2 class="section-title"><small>Zone</small>DMZ (Demilitarized Zone)</h2>
+    <div class="card">
+      <ul>
+        <li>An area where servers exposed to the external network (web servers, mail servers, etc.) are placed separately from the internal network.</li>
+        <li>By providing a DMZ, even if a public-facing server is attacked, damage to the internal network can be prevented.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title"><small>Layers</small>Defense in Depth</h2>
+    <div class="card">
+      <p><b style="color:var(--text)">(1) Definition:</b> the concept of layering multiple security measures. <b style="color:var(--text)">Goal:</b> even if one measure is breached, the next one can still protect the system.</p>
+    </div>
+    <h3 style="margin:18px 0 10px">(2) How measures are combined in network security</h3>
+    <div class="timeline">
+      <div class="t-item"><div class="year">Layer 1</div><h4>Network entry</h4><p>Block unauthorized communication using a firewall.</p></div>
+      <div class="t-item"><div class="year">Layer 2</div><h4>Communication path</h4><p>Encrypt communication using a VPN.</p></div>
+      <div class="t-item"><div class="year">Layer 3</div><h4>Server placement</h4><p>Separate public-facing servers from the internal network using a DMZ.</p></div>
+      <div class="t-item"><div class="year">Layer 4</div><h4>Endpoints</h4><p>Install antivirus software and keep the OS updated.</p></div>
+    </div>
+
+    <h2 class="section-title"><small>Concept</small>Zero Trust</h2>
+    <div class="card">
+      <p><b style="color:var(--text)">(1) Definition:</b> a security concept meaning the system does not trust any communication, including communication from within the organization’s network, and always verifies it.</p>
+      <div class="callout" style="margin-top:12px">Example: even for access from inside the organization, identity verification and access permission checks are performed every time.</div>
+    </div>
+    <h3 style="margin:18px 0 10px">Conventional vs. modern security</h3>
+    <div class="compare">
+      <div class="card"><h3>Conventional</h3><p>Designed mainly around protecting a perimeter: “inside the organization’s network is safe, and outside is dangerous.”</p></div>
+      <div class="card"><h3>Modern</h3><p>With cloud services and remote work, the boundary between “inside” and “outside” has become blurred, so protecting only the perimeter is no longer sufficient.</p></div>
+    </div>`,
+
+  3: () => `
+    <div class="page-head">
+      <div class="crumb">Chapter 2 · Lesson 3</div>
+      <h1>2.3 Incident Response and Risk Management</h1>
+      <p>What a security incident is, the six stages of incident response, and how the size of a risk is determined.</p>
+    </div>
+
+    <h2 class="section-title"><small>Definition</small>Security Incident</h2>
+    <div class="card">
+      <p>A situation in which actual damage occurs due to an information security problem.</p>
+      <div class="grid cols-3" style="margin-top:14px">
+        <div class="card"><div class="big">📤</div><h3>Information leak</h3><p>Personal or confidential information is leaked to the outside.</p></div>
+        <div class="card"><div class="big">✏️</div><h3>Data tampering</h3><p>Data within a system is altered without authorization.</p></div>
+        <div class="card"><div class="big">⛔</div><h3>Service outage</h3><p>A service becomes unavailable due to attacks on the server, etc.</p></div>
+      </div>
+    </div>
+
+    <h2 class="section-title"><small>Process</small>The Flow of Incident Response</h2>
+    <div class="grid cols-3">
+      <div class="card"><span class="num">1</span><h3>Preparation</h3><p>Establish response procedures and structures in advance, in preparation for incidents.</p></div>
+      <div class="card"><span class="num">2</span><h3>Detection</h3><p>Discover and confirm that an incident has occurred.</p></div>
+      <div class="card"><span class="num">3</span><h3>Containment</h3><p>Limit the scope of impact so that damage does not spread further.</p></div>
+      <div class="card"><span class="num">4</span><h3>Eradication</h3><p>Remove the cause of the incident (e.g., remove malware).</p></div>
+      <div class="card"><span class="num">5</span><h3>Recovery</h3><p>Return systems and services to their normal state.</p></div>
+      <div class="card"><span class="num">6</span><h3>Prevention of recurrence</h3><p>Analyze the cause and take measures so that the same incident does not occur again.</p></div>
+    </div>
+    <div class="callout warn" style="margin-top:16px"><b>Order matters:</b> it is important to proceed through the six stages in order. Example: if recovery is performed without identifying the cause, the same incident may occur again.</div>
+
+    <h2 class="section-title"><small>Risk</small>Risk Management</h2>
+    <div class="grid cols-2">
+      <div class="card"><span class="num">1</span><h3>What is a risk?</h3><p>The possibility of an information security problem occurring in the future, and its impact.</p></div>
+      <div class="card"><span class="num">2</span><h3>The size of a risk</h3>
+        <p><b style="color:var(--text)">Risk size = Impact × Likelihood</b></p>
+        <ul><li><b>Impact:</b> how much damage occurs if the risk actually materializes.</li><li><b>Likelihood:</b> how high the probability is that the risk will actually materialize.</li></ul></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Try it: risk size calculator</h3>
+      <div class="actions" style="align-items:center">
+        <label class="muted-s">Impact
+          <select id="riskImpact" class="btn-s"><option value="1">1 · Low</option><option value="2">2 · Medium</option><option value="3">3 · High</option></select></label>
+        <label class="muted-s">Likelihood
+          <select id="riskLike" class="btn-s"><option value="1">1 · Low</option><option value="2">2 · Medium</option><option value="3">3 · High</option></select></label>
+      </div>
+      <div class="callout" id="riskOut" style="margin-top:12px"></div>
+    </div>`,
+};
+
+function initRisk() {
+  const a = document.getElementById("riskImpact"), b = document.getElementById("riskLike"), out = document.getElementById("riskOut");
+  if (!a) return;
+  const upd = () => {
+    const v = Number(a.value) * Number(b.value);
+    const lvl = v >= 6 ? "High risk — act first" : v >= 3 ? "Medium risk — plan countermeasures" : "Low risk — monitor";
+    out.classList.toggle("warn", v >= 6);
+    out.innerHTML = `<b>Risk size = ${a.value} × ${b.value} = ${v}</b> · ${lvl}`;
+  };
+  a.addEventListener("change", upd); b.addEventListener("change", upd); upd();
+}
+
+function pdfCard() {
+  return `
+    <a class="card quiz-cta" href="${CH2_PDF}" target="_blank" rel="noopener" style="border-color:rgba(76,201,255,.4)">
+      <div class="big">📄</div>
+      <div><h3>Chapter 2 slides (PDF)</h3><p>Open the original presentation for Chapter 2.</p></div>
+      <span class="btn">Open PDF →</span>
+    </a>`;
+}
+
 /* ---------- DOM refs ---------- */
 const view = document.getElementById("view");
 const navSub = document.getElementById("navSub");
@@ -273,7 +505,7 @@ function route() {
   if (parts[0] === "c" && CHAPTERS[parts[1]]) {
     const c = Number(parts[1]);
     const l = parts[2] === "l" ? Number(parts[3]) : null;
-    const quizN = (c === 1 && parts[2] === "q") ? (Number(parts[3]) || 1) : null;
+    const quizN = (c === 1 && parts[2] === "q") ? (Number(parts[3]) || 1) : (c === 2 && parts[2] === "q") ? 4 + (Number(parts[3]) || 1) : null;
     showChapterNav(c, l, quizN);
     if (quizN) renderQuiz(quizN);
     else if (l && CHAPTERS[c].lessons[l - 1]) renderLesson(c, l);
@@ -293,7 +525,7 @@ function showChapterNav(c, activeLesson, quizActive) {
   lessonsNav.innerHTML = CHAPTERS[c].lessons
     .map((_, i) => {
       const lesson = `<a href="#/c/${c}/l/${i + 1}" class="${activeLesson === i + 1 ? "active" : ""}">Lesson ${i + 1}</a>`;
-      const quiz = c === 1 && i <= 3 ? `<a href="#/c/1/q/${i + 1}" class="quiz-link ${quizActive === i + 1 ? "active" : ""}">✎ Lesson ${i + 1} Quiz</a>` : "";
+      const quiz = c === 1 && i <= 3 ? `<a href="#/c/1/q/${i + 1}" class="quiz-link ${quizActive === i + 1 ? "active" : ""}">✎ Lesson ${i + 1} Quiz</a>` : (c === 2 && i <= 2 ? `<a href="#/c/2/q/${i + 1}" class="quiz-link ${quizActive === 5 + i ? "active" : ""}">✎ Lesson ${i + 1} Quiz</a>` : "");
       return lesson + quiz;
     })
     .join("");
@@ -347,10 +579,10 @@ function renderChapter(c) {
       ${ch.lessons.map((ls, i) => `
         <a class="card" href="#/c/${c}/l/${i + 1}">
           <span class="num">${i + 1}</span>
-          <h3>${ls.icon ? ls.icon + " " : ""}${c === 1 ? ls.title : "Lesson " + (i + 1)}</h3>
+          <h3>${ls.icon ? ls.icon + " " : ""}${c <= 2 ? ls.title : "Lesson " + (i + 1)}</h3>
           <p>${ls.summary || "Content for this lesson will be added soon."}</p>
         </a>`).join("")}
-    </div>`);
+    </div>${c === 2 ? pdfCard() : ""}`);
 }
 
 function renderLesson(c, l) {
@@ -359,6 +591,8 @@ function renderLesson(c, l) {
   let html;
   if (c === 1 && CH1[l]) {
     html = CH1[l]();
+  } else if (c === 2 && CH2[l]) {
+    html = CH2[l]();
   } else {
     html = `
       <div class="page-head">
@@ -369,17 +603,19 @@ function renderLesson(c, l) {
   }
   const total = ch.lessons.length;
   const prev = l > 1 ? `<a href="#/c/${c}/l/${l - 1}">← Lesson ${l - 1}</a>` : `<a href="#/c/${c}">← ${ch.title}</a>`;
-  const next = (c === 1 && l <= 4) ? `<a href="#/c/1/q/${l}">Lesson ${l} Quiz →</a>` : l < total ? `<a href="#/c/${c}/l/${l + 1}">Lesson ${l + 1} →</a>` : (c < 4 ? `<a href="#/c/${c + 1}">Chapter ${c + 1} →</a>` : `<a href="#/">Home →</a>`);
-  const cta = (c === 1 && l <= 4) ? `
-      <a class="card quiz-cta" href="#/c/1/q/${l}">
+  const quizHref = (c === 1 && l <= 4) ? `#/c/1/q/${l}` : (c === 2 && l <= 3) ? `#/c/2/q/${l}` : null;
+  const next = quizHref ? `<a href="${quizHref}">Lesson ${l} Quiz →</a>` : l < total ? `<a href="#/c/${c}/l/${l + 1}">Lesson ${l + 1} →</a>` : (c < 4 ? `<a href="#/c/${c + 1}">Chapter ${c + 1} →</a>` : `<a href="#/">Home →</a>`);
+  const cta = quizHref ? `
+      <a class="card quiz-cta" href="${quizHref}">
         <div class="big">✎</div>
         <div><h3>Test yourself: Lesson ${l} Quiz</h3><p>Multiple-choice and essay questions with instant correction from the model answers.</p></div>
         <span class="btn">Start →</span>
       </a>` : "";
-  setView(html + cta + `<div class="pager">${prev}${next}</div>`);
+  setView(html + cta + (c === 2 ? pdfCard() : "") + `<div class="pager">${prev}${next}</div>`);
 
   if (c === 1 && l === 1) { initChart(); initSwitch(); }
   if (c === 1 && l === 2) { initNest(); initNN(); }
+  if (c === 2 && l === 3) initRisk();
 }
 
 /* ---------- Lesson widgets ---------- */

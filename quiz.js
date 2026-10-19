@@ -159,6 +159,9 @@ const QUIZZES = {
   2: { mcq: MCQ2, essay: ESSAY2, lesson: 2, topic: "How AI Works" },
   3: { mcq: MCQ3, essay: ESSAY3, lesson: 3, topic: "AI in Daily Life and Industry" },
   4: { mcq: MCQ4, essay: ESSAY4, lesson: 4, topic: "Ethical Issues with AI" },
+  5: { mcq: MCQ5, essay: ESSAY5, ch: 2, lesson: 1, topic: "Cryptographic Technologies and Authentication" },
+  6: { mcq: MCQ6, essay: ESSAY6, ch: 2, lesson: 2, topic: "Network Security Design" },
+  7: { mcq: MCQ7, essay: ESSAY7, ch: 2, lesson: 3, topic: "Incident Response and Risk Management" },
 };
 let curQuiz = 1;
 const Q = () => QUIZZES[curQuiz];
@@ -169,12 +172,13 @@ function renderQuiz(n) {
   if (n !== curQuiz) { quizState.answers = {}; }
   curQuiz = n;
   const q = Q();
+  const ch = q.ch || 1;
   document.title = `Lesson ${q.lesson} Quiz · Programming and AI`;
-  const prevL = `<a href="#/c/1/l/${q.lesson}">← Lesson ${q.lesson}</a>`;
-  const nextL = q.lesson < 4 ? `<a href="#/c/1/l/${q.lesson + 1}">Lesson ${q.lesson + 1} →</a>` : `<a href="#/c/2">Chapter 2 →</a>`;
+  const prevL = `<a href="#/c/${ch}/l/${q.lesson}">← Lesson ${q.lesson}</a>`;
+  const nextL = ch === 2 ? (q.lesson < 3 ? `<a href="#/c/2/l/${q.lesson + 1}">Lesson ${q.lesson + 1} →</a>` : `<a href="#/c/3">Chapter 3 →</a>`) : q.lesson < 4 ? `<a href="#/c/1/l/${q.lesson + 1}">Lesson ${q.lesson + 1} →</a>` : `<a href="#/c/2">Chapter 2 →</a>`;
   setView(`
     <div class="page-head">
-      <div class="crumb">Chapter 1 · Lesson ${q.lesson} Quiz</div>
+      <div class="crumb">Chapter ${ch} · Lesson ${q.lesson} Quiz</div>
       <h1>Test Yourself</h1>
       <p>${q.mcq.length} multiple-choice and ${q.essay.length} essay questions on Lesson ${q.lesson} (${q.topic}). Answers are checked instantly against the model answers.</p>
     </div>
